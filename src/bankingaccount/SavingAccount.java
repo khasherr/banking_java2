@@ -8,14 +8,31 @@ package bankingaccount;
 import java.util.ArrayList;
 
 public class SavingAccount extends BankingAccount implements IInterest {
-    private int interest;
 
-    public SavingAccount(String accountNumber, String accountHolder, String openDate, String SSN, int accountHolderID, ArrayList<String> history, double bankFees, double balance, int interest) {
-        super(accountNumber, accountHolder, openDate, SSN, accountHolderID, history, bankFees, balance);
+    private int interest;
+    
+    /**
+     * 
+     * @param accountNumber
+     * @param accountHolder
+     * @param openDate
+     * @param SSN
+     * @param accountHolderID
+     * @param history
+     * @param bankFees
+     * @param balance
+     * @param interest 
+     */
+    public SavingAccount(String accountNumber, String accountHolder, String openDate, String SSN, int accountHolderID, double bankFees, double balance, int interest) {
+        super(accountNumber, accountHolder, openDate, SSN, accountHolderID, bankFees, balance);
         
         this.interest = interest;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public double getbalance() {
         super.calculateBalanceWithFees();
@@ -23,6 +40,9 @@ public class SavingAccount extends BankingAccount implements IInterest {
         return super.balance;
     }
     
+    /**
+     * 
+     */
     public void calculateInterestWithBalance() {
        this.balance += this.balance * interest;
     

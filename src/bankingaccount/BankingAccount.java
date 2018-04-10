@@ -17,7 +17,7 @@ public abstract class BankingAccount {
     private String accountHolder;
     private String openDate;
     private String SSN; // social security number 
-    private int accountHolderID = 100; // intialized it 100\ 
+    private static int accountHolderID = 100; // intialized it 100\ 
     private ArrayList <String> history;
     private double bankFees;
     protected double balance; //bc we access through othher classes inherited
@@ -36,7 +36,7 @@ public abstract class BankingAccount {
      * @param bankFees
      * @param balance 
      */
-    public BankingAccount(String accountNumber, String accountHolder, String openDate,String SSN, int accountHolderID, ArrayList<String> history,
+    public BankingAccount(String accountNumber, String accountHolder, String openDate,String SSN, int accountHolderID,
                       
                                                                                                             double bankFees, double balance){ 
         this.accountNumber = accountNumber; 
@@ -44,7 +44,6 @@ public abstract class BankingAccount {
         this.openDate = openDate; 
         this.SSN = SSN;
         this.accountHolderID +=this.accountHolderID++;
-        this.history = history;
         this.bankFees = bankFees;
         this.balance = balance;
     } 
@@ -64,7 +63,14 @@ public abstract class BankingAccount {
             balance = balance - amount;
         else 
             amount = 0;
-        return amount;
+        
+        //history of trasaction
+         addHistory("You lost" + amount + " and your balance is " + balance);
+        
+         //returns the amout
+         return amount;
+       
+        
     }
     
     //Deposit
@@ -75,7 +81,7 @@ public abstract class BankingAccount {
      */
     public void deposit (double amount){ 
         balance = balance + amount;
-        
+        addHistory("You added " + amount + " and your balance is " + balance);
     }
     
    
@@ -90,7 +96,8 @@ public abstract class BankingAccount {
     public void transfer(BankingAccount sender ,BankingAccount reciever,double amount){ 
         sender.withdrawl(amount); 
         reciever.deposit(amount);
-          
+         
+       addHistory("You transfered " + amount + " and your balance is " + balance);
 }
     
     //calculates fees with balance
@@ -104,8 +111,9 @@ public abstract class BankingAccount {
     }
    
     //SETTERS
+    
     // accountnumber = ID + RANDOM + FIRST 2 DIGIT OF SOCIAL SECURITY NUMBER
-   
+    // check if this works !
     public void setAccountNumber() { 
         int random = (int) Math.random()*100; 
         accountNumber = accountHolderID + " " + random + SSN.substring(0,2);
@@ -113,6 +121,7 @@ public abstract class BankingAccount {
     
     
       // GETTERS 
+    
        public String getAccountNumber() { 
            return this.accountNumber;
        }
@@ -133,14 +142,35 @@ public abstract class BankingAccount {
            return this.accountHolderID;
        }
        
-       public ArrayList gethistory(){ 
-           return this.history;
+       
+       /** 
+        * 
+        * @return 
+        */
+       public String gethistory(){ 
+                String output = "";
+               for(String element:history ) { 
+               output += element+"\n";
+               
+           }
+           return output;
+                   }
+       
+       public void addHistory(String input) {
+       history.add(input);
        }
+       
+       
       
        public double getbankFees() { 
            return this.bankFees;
        }
        
+       
        public abstract double getbalance();
+       
+  
     }
+
+   
     

@@ -12,8 +12,8 @@ package bankingaccount;
 public interface IInterest {
   
    
-   
-   public void calculateInterestRate();
+  
+   public void calculateInterestWithBalance();
     
     
 }

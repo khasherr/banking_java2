@@ -38,9 +38,9 @@ public abstract class BankingAccount {
      * @param bankFees
      * @param balance 
      */
-    public BankingAccount(String accountNumber, String accountHolder, String openDate,String SSN, int accountHolderID,
-                      
-                                                                                                            double bankFees, double balance){ 
+    public BankingAccount(String accountNumber, String accountHolder, 
+            String openDate,String SSN, int accountHolderID, 
+            double bankFees, double balance){ 
         this.accountNumber = accountNumber; 
         this.accountHolder = accountHolder; 
         this.openDate = openDate; 

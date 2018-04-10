@@ -23,7 +23,9 @@ public class SavingAccount extends BankingAccount implements IInterest {
      * @param balance
      * @param interest 
      */
-    public SavingAccount(String accountNumber, String accountHolder, String openDate, String SSN, int accountHolderID, double bankFees, double balance, int interest) {
+    public SavingAccount(String accountNumber, String accountHolder, 
+            String openDate, String SSN, int accountHolderID, double bankFees, 
+            double balance, int interest) {
         super(accountNumber, accountHolder, openDate, SSN, accountHolderID, bankFees, balance);
         
         this.interest = interest;
@@ -43,6 +45,7 @@ public class SavingAccount extends BankingAccount implements IInterest {
     /**
      * 
      */
+    @Override
     public void calculateInterestWithBalance() {
        this.balance += this.balance * interest;
     

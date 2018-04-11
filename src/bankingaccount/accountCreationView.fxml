@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="creationView" alignment="CENTER" prefHeight="265.0" prefWidth="308.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bankingaccount.creationViewController">
+    <children>
+        <HBox>
+            <children>
+                <Label fx:id="name" text="Type your full name: " />
+                <TextField fx:id="nametf" />
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <Label fx:id="ssn" text="Type Your SSN: " />
+                <TextField fx:id="ssntf" />
+            </children>
+        </HBox>
+        <Label fx:id="type" alignment="CENTER" text="Select Account Type:" />
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="350.0" spacing="100.0">
+            <children>
+                <RadioButton fx:id="radioChequeing" mnemonicParsing="false" text="Chequeing">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="tg" />
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="radioSavings" mnemonicParsing="false" text="Savings" toggleGroup="$tg" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="350.0" spacing="100.0">
+            <children>
+                <Button fx:id="btnSubmit" mnemonicParsing="false" text="Submit" />
+                <Button fx:id="btnReturn" mnemonicParsing="false"
+                        onAction="#handleReturn" text="Return" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

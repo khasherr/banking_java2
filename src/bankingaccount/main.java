@@ -23,7 +23,7 @@ public class main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
         
         Scene scene = new Scene(root, 300, 250);
-        
+                
         primaryStage.setTitle("BANK");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -35,5 +35,6 @@ public class main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
     
 }

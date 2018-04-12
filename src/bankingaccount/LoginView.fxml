@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="loginview" prefHeight="158.0" prefWidth="278.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" 
+      xmlns="http://javafx.com/javafx/2.2"
+      fx:controller="bankingaccount.LoginViewController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="278.0" spacing="10.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="42.0" prefWidth="57.0" text="ID:" textAlignment="CENTER" />
+                <TextField fx:id="idtf" prefWidth="200.0" promptText="Your name is your ID" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="278.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="42.0" prefWidth="57.0" text="PIN:" />
+                <TextField fx:id="pintf" alignment="CENTER" prefWidth="200.0" promptText="Last 4 digit of your SSN" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="278.0" spacing="110.0">
+            <children>
+                <Button fx:id="login" mnemonicParsing="false" text="Log In" />
+                <Button fx:id="btnReturn" mnemonicParsing="false" text="Return" onAction="#handleReturn" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

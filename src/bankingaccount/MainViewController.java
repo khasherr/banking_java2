@@ -47,6 +47,8 @@ public class MainViewController implements Initializable {
     public void removeScreen(Controller sender){
         sp.getChildren().remove(sender.getView());
     }
+   
+    
 
     
 }

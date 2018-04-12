@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 /**
@@ -19,45 +20,41 @@ import javafx.scene.layout.Pane;
  *
  * @author leedy
  */
-public class FirstViewController extends Controller implements Initializable {
-
+public class LoginViewController extends Controller implements Initializable {
+    
     @FXML
-    private Pane firstView;
+    private Pane loginview;
     @FXML
-    private Button btnLogin;
+    private Button btnReturn;
     @FXML
-    private Button btnCreation;
+    private Button login;
     @FXML
-    private Button btnExit;
-
+    private TextField idtf;
+    @FXML
+    private TextField pintf;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-    }
-
-    @FXML
-    public void handleLogin(ActionEvent event) throws IOException {
-        getManagingController().addScreen("LoginView.fxml", this);
-        getManagingController().removeScreen(this);
-
-    }
-
-    @FXML
-    public void handleCreation(ActionEvent event) throws IOException {
-        getManagingController().addScreen("accountCreationView.fxml", this);
-        getManagingController().removeScreen(this);
-    }
+        
+    }   
 
     @Override
     public Pane getView() {
-        return firstView;
+        return loginview;
     }
-
+    
     @FXML
-    public void handleExit(ActionEvent event) throws IOException {
-        System.exit(0);
+    private void handleReturn(ActionEvent event) throws IOException {
+        getManagingController().addScreen("firstView.fxml", this);
+        getManagingController().removeScreen(this);
     }
+    
+    @FXML
+    private void handleLogin(ActionEvent event) throws IOException {
+        
+    }
+    
+    
 }

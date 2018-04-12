@@ -8,23 +8,25 @@
 <?import javafx.scene.text.*?>
 
 <VBox fx:id="firstView" alignment="CENTER" prefHeight="381.0000999999975" prefWidth="461.0" spacing="30.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bankingaccount.FirstViewController">
-  <children>
-    <Button fx:id="btnLogin" minHeight="-1.0" minWidth="-1.0" 
-            mnemonicParsing="false" prefHeight="77.0" prefWidth="158.0" 
-            text="LOG IN" textAlignment="CENTER">
-      <font>
-        <Font size="15.0" />
-      </font>
-    </Button>
-    <Button fx:id="btnCreation" onAction="#handleCreation" mnemonicParsing="false" prefHeight="77.0" prefWidth="158.0" text="NEW ACCOUNT" textAlignment="CENTER">
-      <font>
-        <Font size="12.0" fx:id="x1" />
-      </font>
-    </Button>
-    <HBox alignment="BOTTOM_RIGHT" prefHeight="103.0" prefWidth="306.0000999999975">
-      <children>
-        <Button fx:id="btnExit" font="$x1" mnemonicParsing="false" prefHeight="77.0" prefWidth="158.0" text="EXIT" textAlignment="CENTER" />
-      </children>
-    </HBox>
-  </children>
+    <children>
+        <Button fx:id="btnLogin" minHeight="-1.0" minWidth="-1.0" 
+                mnemonicParsing="false" prefHeight="77.0" prefWidth="158.0" 
+                text="LOG IN" textAlignment="CENTER"
+                onAction="#handleLogin">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnCreation" onAction="#handleCreation" mnemonicParsing="false" prefHeight="77.0" prefWidth="158.0" text="NEW ACCOUNT" textAlignment="CENTER">
+            <font>
+                <Font size="12.0" fx:id="x1" />
+            </font>
+        </Button>
+        <HBox alignment="BOTTOM_RIGHT" prefHeight="103.0" prefWidth="306.0000999999975">
+            <children>
+                <Button fx:id="btnExit" font="$x1" 
+                        onAction="#handleExit" mnemonicParsing="false" prefHeight="77.0" prefWidth="158.0" text="EXIT" textAlignment="CENTER" />
+            </children>
+        </HBox>
+    </children>
 </VBox>

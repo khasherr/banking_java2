@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class SavingAccount extends BankingAccount implements IInterest {
 
-    private int interest;
+    private double interest;
     
     /**
      * 
@@ -25,7 +25,7 @@ public class SavingAccount extends BankingAccount implements IInterest {
      */
     public SavingAccount(String accountNumber, String accountHolder, 
             String openDate, String SSN, int accountHolderID, double bankFees, 
-            double balance, int interest) {
+            double balance, double interest) {
         super(accountNumber, accountHolder, openDate, SSN, accountHolderID, bankFees, balance);
         
         this.interest = interest;

@@ -20,7 +20,7 @@ public abstract class BankingAccount {
     private String openDate;
     private String SSN; // social security number 
     private static int accountHolderID = 100; // intialized it 100\ 
-    private ArrayList <String> history;
+    private ArrayList<String> history;
     private double bankFees;
     protected double balance; //bc we access through othher classes inherited
     
@@ -34,7 +34,6 @@ public abstract class BankingAccount {
      * @param openDate
      * @param SSN
      * @param accountHolderID
-     * @param history
      * @param bankFees
      * @param balance 
      */
@@ -48,6 +47,7 @@ public abstract class BankingAccount {
         this.accountHolderID +=this.accountHolderID++;
         this.bankFees = bankFees;
         this.balance = balance;
+        this.history = new ArrayList<String>();
     } 
         
     

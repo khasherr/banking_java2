@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Sher Khan
  */
 public class ChequeingAccount extends BankingAccount{
-
+    static ArrayList<BankingAccount> accounts = new ArrayList<BankingAccount>();
     
     /**
      *  
@@ -21,7 +21,6 @@ public class ChequeingAccount extends BankingAccount{
      * @param openDate
      * @param SSN
      * @param accountHolderID
-     * @param history
      * @param bankFees
      * @param balance 
      */

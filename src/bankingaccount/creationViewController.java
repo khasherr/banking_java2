@@ -5,7 +5,8 @@
  */
 package bankingaccount;
 
-import static bankingaccount.ChequeingAccount.accounts;
+import bankingaccount.ChequeingAccount;
+import bankingaccount.SavingAccount;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -62,11 +63,11 @@ public class creationViewController extends Controller implements Initializable 
         if (type.equals("Savings")) {
             SavingAccount sa = new SavingAccount(accountnumGenerator(), name, time, 
             ssn, 0, 0.0, 0.0, 2.0);
-            accounts.add(sa);
+            this.writeData(sa);
         } else {
             ChequeingAccount ca = new ChequeingAccount(accountnumGenerator(), name, time,
             ssn, 0, 0.0, 0.0);
-            accounts.add(ca);
+            this.writeData(ca);
         }
         getManagingController().addScreen("firstView.fxml", this);
         getManagingController().removeScreen(this);

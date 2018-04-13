@@ -50,6 +50,10 @@ public class SavingAccount extends BankingAccount implements IInterest {
        this.balance += this.balance * interest;
     
     }
+    
+    public String appendSAData(){
+        return this.appendData()+","+this.getbalance()+","+interest;
+    }
 
     
     

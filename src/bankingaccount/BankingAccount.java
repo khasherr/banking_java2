@@ -140,6 +140,7 @@ public abstract class BankingAccount {
            return this.SSN;
        }
        
+       
        public int getaccountHolderID() { 
            return this.accountHolderID;
        }
@@ -167,6 +168,13 @@ public abstract class BankingAccount {
        public double getbankFees() { 
            return this.bankFees;
        }
+       
+       public String appendData(){
+        return this.getAccountNumber() + ","+this.getAccountHolder() + ","+
+                this.getopenDate() + ","+this.getSSN() + ","+
+                this.getaccountHolderID()+","+this.getbankFees();
+    }
+    
        
        
        public abstract double getbalance();

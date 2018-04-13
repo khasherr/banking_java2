@@ -5,14 +5,11 @@
  */
 package bankingaccount;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Sher Khan
  */
 public class ChequeingAccount extends BankingAccount{
-    static ArrayList<BankingAccount> accounts = new ArrayList<BankingAccount>();
     
     /**
      *  
@@ -26,6 +23,12 @@ public class ChequeingAccount extends BankingAccount{
      */
     public ChequeingAccount(String accountNumber, String accountHolder, String openDate, String SSN, int accountHolderID, double bankFees, double balance) {
         super(accountNumber, accountHolder, openDate, SSN, accountHolderID, bankFees, balance);
+    }
+    
+    
+    
+    public String appendCAData(){
+        return this.appendData()+","+this.getbalance();
     }
     
     

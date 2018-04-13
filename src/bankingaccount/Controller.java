@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import static java.lang.Character.isDigit;
 import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 
@@ -140,6 +141,19 @@ public abstract class Controller {
             }
         }
         return a;
+    }
+    /**
+     * Checks if string is numeric
+     * @param s takes a String
+     * @return boolean
+     */
+    public boolean isNumeric(String s){
+        try {
+            int i = Integer.parseInt(s);
+        }catch(NumberFormatException ex){
+            return false;
+        }
+        return true;
     }
     
     /**

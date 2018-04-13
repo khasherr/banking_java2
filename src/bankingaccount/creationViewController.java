@@ -5,8 +5,6 @@
  */
 package bankingaccount;
 
-import bankingaccount.ChequeingAccount;
-import bankingaccount.SavingAccount;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -38,22 +36,37 @@ public class creationViewController extends Controller implements Initializable 
     private Button btnSubmit;
     @FXML
     private Button btnReturn;
-
+    /**
+     * Return the pane object
+     * @return 
+     */
     @Override
     public Pane getView() {
         return creationView;
     }
-
+    /**
+     * Initialize the controller
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
-
+    /**
+     * 
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void handleReturn(ActionEvent event) throws IOException {
         getManagingController().addScreen("firstView.fxml", this);
         getManagingController().removeScreen(this);
     }
-
+    /**
+     * 
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void handleSubmit(ActionEvent event) throws IOException {
         String type = ((RadioButton) tg.getSelectedToggle()).getText();
@@ -72,7 +85,10 @@ public class creationViewController extends Controller implements Initializable 
         getManagingController().addScreen("firstView.fxml", this);
         getManagingController().removeScreen(this);
     }
-
+    /**
+     * Generates 8 digit account number
+     * @return 8 digit account number
+     */
     private static String accountnumGenerator() {
         return String.valueOf((int) (Math.random() * (99999999 - 10000000) + 10000000));
     }

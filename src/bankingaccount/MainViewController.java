@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
 /**
  * FXML Controller class
  *
- * @author leedy
+ * @author Heon Lee
  */
 public class MainViewController implements Initializable {
     @FXML
@@ -26,13 +26,19 @@ public class MainViewController implements Initializable {
     @FXML
     FirstViewController firstViewController;
     /**
-     * Initializes the controller class.
+     * Initializes the controller class. Sets the managing controller of 
+     * first view controller to this controller.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         firstViewController.setManagingController(this);
     }    
-    
+    /**
+     * Add screen
+     * @param fxmlFile name of fxml File
+     * @param sender Controller that initialized this method
+     * @throws IOException 
+     */
     public void addScreen(String fxmlFile, Controller sender) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent view = loader.load();//Parent class is a base class of all nodes
@@ -43,7 +49,10 @@ public class MainViewController implements Initializable {
         newC.setParentController(sender);
         newC.setManagingController(this);
     }
-    
+    /**
+     * Remove screen
+     * @param sender Controller object that called this method
+     */
     public void removeScreen(Controller sender){
         sp.getChildren().remove(sender.getView());
     }

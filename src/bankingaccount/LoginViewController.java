@@ -5,12 +5,9 @@
  */
 package bankingaccount;
 
-import bankingaccount.BankingAccount;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +18,7 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class
  *
- * @author leedy
+ * @author Heon Lee
  */
 public class LoginViewController extends Controller implements Initializable {
 
@@ -42,18 +39,29 @@ public class LoginViewController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-
+    /**
+     * 
+     * @return  
+     */
     @Override
     public Pane getView() {
         return loginview;
     }
-
+    /**
+     * Event handler for Return button
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void handleReturn(ActionEvent event) throws IOException {
         getManagingController().addScreen("firstView.fxml", this);
         getManagingController().removeScreen(this);
     }
-
+    /**
+     * Event handler for login button
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {
         this.readData();

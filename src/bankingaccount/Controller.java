@@ -5,10 +5,6 @@
  */
 package bankingaccount;
 
-import bankingaccount.BankingAccount;
-import bankingaccount.ChequeingAccount;
-import bankingaccount.MainViewController;
-import bankingaccount.SavingAccount;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,22 +23,39 @@ public abstract class Controller {
     private Controller parent;
     private MainViewController manage;
     private ArrayList<BankingAccount> arr = new ArrayList<>();
-    
+   /**
+    * Get managing Controller
+    * @return return managing controller 
+    */ 
     public MainViewController getManagingController() {
         return manage;
     }
-    
+    /**
+     * Sets the managing controller to the argument
+     * @param manage managing controller 
+     */
     public void setManagingController(MainViewController manage){
         this.manage = manage;
     }
+    /**
+     * get Parent controller
+     * @return Parent controller
+     */
     public Controller getParentController(){
         return parent;
     }
-    
+    /**
+     * set parent controller
+     * @param parent Controller parent
+     */
     public void setParentController(Controller parent){
         this.parent = parent;
     }
-    
+    /**
+     * Writes chequeing account data to a file
+     * @param a Chequeing Account
+     * @throws IOException 
+     */
     public void writeData(ChequeingAccount a) throws IOException{
         File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
         if(!f.exists()){
@@ -56,7 +69,11 @@ public abstract class Controller {
         bw.flush();
         bw.close();
     }
-    
+    /**
+     * Writes saving account data to a file
+     * @param a Saving account
+     * @throws IOException 
+     */
     public void writeData(SavingAccount a) throws IOException{
         File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
         if(!f.exists()){
@@ -70,7 +87,12 @@ public abstract class Controller {
         bw.flush();
         bw.close();
     }
-    
+    /**
+     * Reads data from a text file and creates accounts using data from 
+     * the file
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void readData() throws FileNotFoundException, IOException{
         File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
         if(!f.exists()){
@@ -86,7 +108,10 @@ public abstract class Controller {
             br.close();
         }
     }
-    
+    /**
+     * Creates accounts and populates array list of accounts
+     * @param str array string containing account information
+     */
     private void makeAccount(String[] str){
         BankingAccount a;
         if(str.length == 7){
@@ -102,7 +127,11 @@ public abstract class Controller {
         arr.add(a);
         
     }
-    
+    /**
+     * Search account through array list of accounts
+     * @param name account holder name
+     * @return account
+     */
     public BankingAccount searchAccount(String name){
         BankingAccount a = null;
         for (int i = 0; i < arr.size(); i++) {
@@ -112,5 +141,10 @@ public abstract class Controller {
         }
         return a;
     }
+    
+    /**
+     * Abstract class getView
+     * @return Pane object
+     */
     public abstract Pane getView();
 }

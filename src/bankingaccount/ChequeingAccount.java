@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bankingaccount;
 
 /**
@@ -12,35 +8,29 @@ package bankingaccount;
 public class ChequeingAccount extends BankingAccount{
     
     /**
-     *  
-     * @param accountNumber
-     * @param accountHolder
-     * @param openDate
-     * @param SSN
-     * @param accountHolderID
-     * @param bankFees
-     * @param balance 
+     *  Constructor
+     * @param accountNumber account number
+     * @param accountHolder account holder name
+     * @param openDate date opened
+     * @param SSN ssn
+     * @param accountHolderID account holder ID. Used for history file.
+     * @param bankFees bank fees
+     * @param balance balance
      */
-    public ChequeingAccount(String accountNumber, String accountHolder, String openDate, String SSN, int accountHolderID, double bankFees, double balance) {
-        super(accountNumber, accountHolder, openDate, SSN, accountHolderID, bankFees, balance);
-    }
-    
-    
-    
-    public String appendCAData(){
-        return this.appendData()+","+this.getbalance();
+    public ChequeingAccount(String accountNumber, String accountHolder, 
+            String openDate, String SSN, int accountHolderID, double bankFees, 
+            double balance) {
+        super(accountNumber, accountHolder, openDate, SSN, accountHolderID, 
+                bankFees, balance);
     }
     
     
     /**
-     * 
-     * @return balance
+     * Acts like a toString().
+     * @return A formatted string including the information of this account.
      */
-  
-    @Override
-    public double getbalance() {
-        super.calculateBalanceWithFees();
-        return super.balance;
+    public String appendCAData(){
+        return this.appendData()+","+this.getBalance();
     }
     
     

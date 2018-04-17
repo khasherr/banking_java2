@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bankingaccount;
 
 import java.io.IOException;
@@ -41,7 +37,7 @@ public class FirstViewController extends Controller implements Initializable {
     /**
      * Event handler for login button
      * @param event Button Click
-     * @throws IOException 
+     * @throws IOException IOException
      */
     @FXML
     public void handleLogin(ActionEvent event) throws IOException {
@@ -52,7 +48,7 @@ public class FirstViewController extends Controller implements Initializable {
     /**
      * Event handler for new account button
      * @param event Button click
-     * @throws IOException 
+     * @throws IOException IOException
      */
     @FXML
     public void handleCreation(ActionEvent event) throws IOException {
@@ -60,7 +56,7 @@ public class FirstViewController extends Controller implements Initializable {
         getManagingController().removeScreen(this);
     }
     /**
-     * 
+     * Getter for view
      * @return Pane object of firstView.fxml 
      */
     @Override
@@ -70,8 +66,8 @@ public class FirstViewController extends Controller implements Initializable {
     
     /**
      * Event handler for exit button. Exits the program.
-     * @param event button click
-     * @throws IOException 
+     * @param event ActionEvent button click
+     * @throws IOException IOException
      */
     @FXML
     public void handleExit(ActionEvent event) throws IOException {

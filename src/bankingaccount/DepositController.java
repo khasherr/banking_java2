@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bankingaccount;
 
 import java.io.IOException;
@@ -20,9 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
- * FXML Controller class
+ * FXML Controller class for Deposit.fxml
  *
- * @author Sher Khan
+ * @author Heon Lee
  */
 public class DepositController extends Controller implements Initializable {
 
@@ -38,18 +34,29 @@ public class DepositController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    /**
+     * Getter for view
+     * @return A pane of the Controller's View
+     */
     @Override
     public Pane getView() {
         return depositView;
     }
-
+    /**
+     * event handler for return button
+     * @param event ActionEvent. Button click
+     * @throws IOException 
+     */
     @FXML
     private void handleReturn(ActionEvent event) throws IOException {
         getManagingController().addScreen("WelcomeView.fxml", this);
         getManagingController().removeScreen(this);
     }
-
+    /**
+     * event handler for submit button
+     * @param event ActionEvent
+     * @throws IOException 
+     */
     @FXML
     private void handleSubmit(ActionEvent event) throws IOException {
         double amount = 0;

@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bankingaccount;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,13 +12,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 
 /**
- *
+ * Controller for accountCreationView.fxml
  * @author Heon Lee
  */
 public class creationViewController extends Controller implements Initializable {
@@ -42,7 +40,7 @@ public class creationViewController extends Controller implements Initializable 
     /**
      * Return the pane object
      *
-     * @return
+     * @return Pane object of accountcreationview.fxml 
      */
     @Override
     public Pane getView() {
@@ -52,16 +50,16 @@ public class creationViewController extends Controller implements Initializable 
     /**
      * Initialize the controller
      *
-     * @param location
-     * @param resources
+     * @param location URL
+     * @param resources ResourceBundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
     /**
-     *
-     * @param event
+     * Event handler for return button
+     * @param event ActionEvent
      * @throws IOException
      */
     @FXML
@@ -71,8 +69,8 @@ public class creationViewController extends Controller implements Initializable 
     }
 
     /**
-     *
-     * @param event
+     * Event handler for submit button
+     * @param event ActionEvent
      * @throws IOException
      */
     @FXML
@@ -95,15 +93,28 @@ public class creationViewController extends Controller implements Initializable 
         BankingAccount a = this.searchAccount(name);
         if (type != null && name.length() > 0
                 && ssn.length() == 9
-                && isNumeric(ssn) && a == null) {
+                && isNumeric(ssn)
+                && a == null) {
             if (type.equals("Savings")) {
-                SavingAccount sa = new SavingAccount(accountnumGenerator(), name, time,
-                        ssn, 0, 0.0, 0.0, 2.0);
-                this.writeData(sa);
+                Alert fee = new Alert(AlertType.CONFIRMATION);
+                fee.setHeaderText("Saving Account fee is $1 and the interest"
+                        + "rate will be 2%");
+                Optional<ButtonType> c = fee.showAndWait();
+                if (confirmationCatch(c) == false && c.get() == ButtonType.OK) {
+                    SavingAccount sa = new SavingAccount(accountnumGenerator(), name, time,
+                            ssn, 0, 0.0, 0.0, 2.0);
+                    this.writeData(sa);
+                    Alert num = new Alert(AlertType.INFORMATION);
+                    num.setContentText("Your account number is " + sa.getAccountNumber());
+                    num.showAndWait();
+                }
             } else {
                 ChequeingAccount ca = new ChequeingAccount(accountnumGenerator(), name, time,
                         ssn, 0, 0.0, 0.0);
                 this.writeData(ca);
+                Alert num = new Alert(AlertType.INFORMATION);
+                num.setContentText("Your account number is " + ca.getAccountNumber());
+                num.showAndWait();
             }
 
             alert.setTitle("Account Creation successful");

@@ -1,58 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bankingaccount;
 
-import java.util.ArrayList;
-
+/**
+ * 
+ * @author Sher Khan
+ */
 public class SavingAccount extends BankingAccount implements IInterest {
 
     private double interest;
     
     /**
-     * 
-     * @param accountNumber
-     * @param accountHolder
-     * @param openDate
-     * @param SSN
-     * @param accountHolderID
-     * @param history
-     * @param bankFees
-     * @param balance
-     * @param interest 
+     * Constructor
+     * @param accountNumber account number
+     * @param accountHolder account holder
+     * @param openDate date opened
+     * @param SSN ssn
+     * @param accountHolderID account holder ID
+     * @param bankFees bank fee
+     * @param balance balance
+     * @param interest interest rate
      */
     public SavingAccount(String accountNumber, String accountHolder, 
             String openDate, String SSN, int accountHolderID, double bankFees, 
             double balance, double interest) {
-        super(accountNumber, accountHolder, openDate, SSN, accountHolderID, bankFees, balance);
+        super(accountNumber, accountHolder, openDate, SSN, accountHolderID,
+                bankFees, balance);
         
         this.interest = interest;
     }
-
-    /**
-     * 
-     * @return 
-     */
-    @Override
-    public double getbalance() {
-        super.calculateBalanceWithFees();
-        calculateInterestWithBalance();
-        return super.balance;
-    }
     
     /**
-     * 
+     * Calculates balance with interest
      */
     @Override
     public void calculateInterestWithBalance() {
-       this.balance += this.balance * interest;
-    
+       setBalance(getBalance() * interest);
     }
-    
+   /**
+     * Acts like a toString().
+     * @return A formatted string including the information of this account.
+     */
     public String appendSAData(){
-        return this.appendData()+","+this.getbalance()+","+interest;
+        return this.appendData()+","+getBalance()+","+interest;
     }
 
     

@@ -15,7 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
 /**
- * FXML Controller class
+ * FXML Controller class for mainView.fxml.
+ * The frame of all the other screens.
  *
  * @author Heon Lee
  */
@@ -41,7 +42,7 @@ public class MainViewController implements Initializable {
      *
      * @param fxmlFile name of fxml File
      * @param sender Controller that initialized this method
-     * @throws IOException
+     * @throws IOException IOException
      */
     public void addScreen(String fxmlFile, Controller sender) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));

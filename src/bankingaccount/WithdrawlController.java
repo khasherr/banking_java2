@@ -1,10 +1,5 @@
 package bankingaccount;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -20,9 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
- * FXML Controller class
+ * FXML Controller class for Withdrawl.fxml
  *
- * @author leedy
+ * @author Heon Lee
  */
 public class WithdrawlController extends Controller implements Initializable {
 
@@ -39,12 +34,24 @@ public class WithdrawlController extends Controller implements Initializable {
         // TODO
     }
 
+    /**
+     * Event handler for return button
+     *
+     * @param event ActionEvent
+     * @throws IOException
+     */
     @FXML
     private void handleReturn(ActionEvent event) throws IOException {
         getManagingController().addScreen("WelcomeView.fxml", this);
         getManagingController().removeScreen(this);
     }
 
+    /**
+     * Event handler for submit button
+     *
+     * @param event ActionEvent
+     * @throws IOException
+     */
     @FXML
     private void handleSubmit(ActionEvent event) throws IOException {
         double amount = 0;
@@ -68,13 +75,13 @@ public class WithdrawlController extends Controller implements Initializable {
                     Alert balance = new Alert(AlertType.INFORMATION);
                     balance.setTitle("Insufficent");
                     balance.setHeaderText("Your balance: " + getCurrent()
-                            .getbalance());
+                            .getBalance());
                     balance.showAndWait();
                 } else {
                     Alert alertX = new Alert(AlertType.INFORMATION);
                     alertX.setTitle("WITHDRAW");
                     alertX.setHeaderText("Withdraw Complete");
-                    alertX.setContentText("Your Balance: " + getCurrent().getbalance());
+                    alertX.setContentText("Your Balance: " + getCurrent().getBalance());
                     alertX.showAndWait();
                     getManagingController().addScreen("WelcomeView.fxml", this);
                     getManagingController().removeScreen(this);
@@ -87,6 +94,11 @@ public class WithdrawlController extends Controller implements Initializable {
         }
     }
 
+    /**
+     * Getter for view
+     *
+     * @return Pane object of withdrawl.fxml
+     */
     @Override
     public Pane getView() {
         return withdrawView;

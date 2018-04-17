@@ -34,6 +34,7 @@ public class LoginViewController extends Controller implements Initializable {
     private TextField idtf;
     @FXML
     private TextField pintf;
+    
 
     /**
      * Initializes the controller class.
@@ -73,6 +74,7 @@ public class LoginViewController extends Controller implements Initializable {
     private void handleLogin(ActionEvent event) throws IOException {
         this.readData();
         BankingAccount a = this.searchAccount(idtf.getText());
+        this.setCurrent(a);
 
         if (a != null && idtf.getText().length() > 0
                 && pintf.getText().length() == 4
@@ -83,7 +85,7 @@ public class LoginViewController extends Controller implements Initializable {
             alert.setHeaderText("Login Successful");
             alert.setContentText("Press OK to continue");
             alert.showAndWait();
-            getManagingController().addScreen("firstView.fxml", this);
+            getManagingController().addScreen("WelcomeView.fxml", this);
             getManagingController().removeScreen(this);
         } else {
             if (a != null) {
@@ -113,5 +115,4 @@ public class LoginViewController extends Controller implements Initializable {
             }
         }
     }
-
 }

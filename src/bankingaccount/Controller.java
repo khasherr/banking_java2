@@ -12,18 +12,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import static java.lang.Character.isDigit;
 import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 
 /**
  *
- * @author leedy
+ * @author Heon Lee
  */
 public abstract class Controller {
     private Controller parent;
     private MainViewController manage;
-    private ArrayList<BankingAccount> arr = new ArrayList<>();
+    private ArrayList<BankingAccount> accountList = new ArrayList<>();
+    private BankingAccount current;
    /**
     * Get managing Controller
     * @return return managing controller 
@@ -125,7 +125,7 @@ public abstract class Controller {
                     Double.parseDouble(str[6]),Double.parseDouble(str[7]));
         }
         
-        arr.add(a);
+        accountList.add(a);
         
     }
     /**
@@ -135,9 +135,9 @@ public abstract class Controller {
      */
     public BankingAccount searchAccount(String name){
         BankingAccount a = null;
-        for (int i = 0; i < arr.size(); i++) {
-            if(arr.get(i).getAccountHolder().equals(name)){
-                a = arr.get(i);
+        for (int i = 0; i < accountList.size(); i++) {
+            if(accountList.get(i).getAccountHolder().equals(name)){
+                a = accountList.get(i);
             }
         }
         return a;
@@ -155,6 +155,24 @@ public abstract class Controller {
         }
         return true;
     }
+
+    public ArrayList<BankingAccount> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(ArrayList<BankingAccount> arr) {
+        this.accountList = arr;
+    }
+
+    public BankingAccount getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(BankingAccount current) {
+        this.current = current;
+    }
+    
+    
     
     /**
      * Abstract class getView

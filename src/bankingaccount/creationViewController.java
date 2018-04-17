@@ -5,7 +5,6 @@
  */
 package bankingaccount;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -92,9 +91,11 @@ public class creationViewController extends Controller implements Initializable 
         String ssn = ssntf.getText();
         String time = LocalDateTime.now().toString();
         Alert alert = new Alert(AlertType.INFORMATION);
-        if (type != null && nametf.getText().length() > 0
-                && ssntf.getText().length() == 9
-                && isNumeric(ssntf.getText())) {
+        readData();
+        BankingAccount a = this.searchAccount(name);
+        if (type != null && name.length() > 0
+                && ssn.length() == 9
+                && isNumeric(ssn) && a == null) {
             if (type.equals("Savings")) {
                 SavingAccount sa = new SavingAccount(accountnumGenerator(), name, time,
                         ssn, 0, 0.0, 0.0, 2.0);
@@ -104,7 +105,7 @@ public class creationViewController extends Controller implements Initializable 
                         ssn, 0, 0.0, 0.0);
                 this.writeData(ca);
             }
-            
+
             alert.setTitle("Account Creation successful");
             alert.setHeaderText("Account Creation successful");
             alert.showAndWait();
@@ -118,9 +119,16 @@ public class creationViewController extends Controller implements Initializable 
             alert.setTitle("SSN length error");
             alert.setHeaderText("SSN must be 9 digits");
             alert.showAndWait();
-        } else if (!isNumeric(ssntf.getText())){
+        } else if (!isNumeric(ssntf.getText())) {
             alert.setTitle("SSN Error");
             alert.setHeaderText("SSN must be numeric");
+            alert.showAndWait();
+        } else if (a != null) {
+            if (a instanceof ChequeingAccount) {
+                alert.setHeaderText("Chequeing account Exists with the following name");
+            } else {
+                alert.setHeaderText("Saving account Exists with the following name");
+            }
             alert.showAndWait();
         }
     }

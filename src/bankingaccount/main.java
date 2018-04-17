@@ -22,7 +22,7 @@ public class main extends Application {
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 600, 400);
                 
         primaryStage.setTitle("BANK");
         primaryStage.setScene(scene);

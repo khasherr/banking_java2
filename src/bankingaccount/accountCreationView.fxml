@@ -6,15 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="creationView" alignment="CENTER" prefHeight="265.0" prefWidth="308.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bankingaccount.creationViewController">
+<VBox fx:id="creationView" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bankingaccount.creationViewController">
   <children>
-    <HBox>
+    <HBox alignment="CENTER">
       <children>
         <Label fx:id="name" text="Type your full name: " />
         <TextField fx:id="nametf" />
       </children>
     </HBox>
-    <HBox>
+    <HBox alignment="CENTER">
       <children>
         <Label fx:id="ssn" text="Type Your SSN: " />
         <TextField fx:id="ssntf" promptText="Must be 9 digit number" />

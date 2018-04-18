@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 /**
  * FXML Controller class for WelcomeView.fxml
  *
- * @author Heon Lee
+ * @author Heon Lee, Sher Khan
  */
 public class WelcomeController extends Controller implements Initializable {
 
@@ -29,6 +29,8 @@ public class WelcomeController extends Controller implements Initializable {
     private VBox welcomeView;
     @FXML
     private Label welcome;
+    @FXML
+    private Label balancetf;
 
     /*
      * Initializes the controller class.
@@ -51,7 +53,15 @@ public class WelcomeController extends Controller implements Initializable {
         welcome.setText("Welcome, " + this.getCurrent().getAccountHolder());
     }
     /**
-     * Event handler for exit button
+     * Sets a label so that the label shows the balance
+     */
+    public void showBalance(){
+        balancetf.setText(String.valueOf(getCurrent().getBalance()));
+    }
+    /**
+     * Event handler for exit button and checks validity. Also, it rewrites
+     * updates account information to a file. If a user wants, it also 
+     * writes the user's history to a new file. 
      * @throws IOException IOException 
      */
     public void handleExit() throws IOException {
@@ -59,10 +69,12 @@ public class WelcomeController extends Controller implements Initializable {
         exit.setContentText("Exit?");
         Optional<ButtonType> ex = exit.showAndWait();
         if (confirmationCatch(ex)== false && ex.get() == ButtonType.OK) {
+            //If the user pressed OK
             File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
-            if (f.exists()) {
-                f.delete();
+            if (f.exists()) {//If the file already exists
+                f.delete();//delete it
             }
+            //Writes updated account information to a new file
             for (int i = 0; i < getAccountList().size(); i++) {
                 if (getAccountList().get(i) instanceof ChequeingAccount) {
                     writeData((ChequeingAccount) getAccountList().get(i));

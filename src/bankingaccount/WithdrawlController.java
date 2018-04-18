@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -17,7 +18,7 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class for Withdrawl.fxml
  *
- * @author Heon Lee
+ * @author Heon Lee, Sher Khan
  */
 public class WithdrawlController extends Controller implements Initializable {
 
@@ -25,6 +26,8 @@ public class WithdrawlController extends Controller implements Initializable {
     private AnchorPane withdrawView;
     @FXML
     private TextField amounttf;
+    @FXML
+    private Label balancetf;
 
     /**
      * Initializes the controller class.
@@ -32,6 +35,13 @@ public class WithdrawlController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+    
+    /**
+     * Sets a label so that the label shows the balance
+     */
+    public void showBalance(){
+        balancetf.setText(String.valueOf(getCurrent().getBalance()));
     }
 
     /**
@@ -48,6 +58,7 @@ public class WithdrawlController extends Controller implements Initializable {
 
     /**
      * Event handler for submit button
+     * Checks validity
      *
      * @param event ActionEvent
      * @throws IOException
@@ -56,6 +67,7 @@ public class WithdrawlController extends Controller implements Initializable {
     private void handleSubmit(ActionEvent event) throws IOException {
         double amount = 0;
         boolean err = false;
+        //If user typed nothing
         try {
             amount = Double.parseDouble(amounttf.getText());
         } catch (NumberFormatException ex) {
@@ -70,8 +82,10 @@ public class WithdrawlController extends Controller implements Initializable {
             alert.setTitle("WITHDRAW");
             alert.setHeaderText("WITHDRAW: $" + amounttf.getText());
             Optional<ButtonType> a = alert.showAndWait();
-            if (a.get() == ButtonType.OK && amount > 0) {
+            if (!confirmationCatch(a) && a.get() == ButtonType.OK && amount > 0) {
+                //If user pressed OK and the entered anmount is greater than 0
                 if (getCurrent().withdrawl(amount) == false) {
+                    //If balance is insufficient
                     Alert balance = new Alert(AlertType.INFORMATION);
                     balance.setTitle("Insufficent");
                     balance.setHeaderText("Your balance: " + getCurrent()
@@ -81,7 +95,8 @@ public class WithdrawlController extends Controller implements Initializable {
                     Alert alertX = new Alert(AlertType.INFORMATION);
                     alertX.setTitle("WITHDRAW");
                     alertX.setHeaderText("Withdraw Complete");
-                    alertX.setContentText("Your Balance: " + getCurrent().getBalance());
+                    alertX.setContentText("Your Balance: " + getCurrent()
+                            .getBalance());
                     alertX.showAndWait();
                     getManagingController().addScreen("WelcomeView.fxml", this);
                     getManagingController().removeScreen(this);

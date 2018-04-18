@@ -6,7 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="creationView" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bankingaccount.creationViewController">
+<VBox fx:id="creationView" alignment="CENTER" prefHeight="400.0" prefWidth="600.0"
+      spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" 
+      xmlns="http://javafx.com/javafx/2.2" 
+      fx:controller="bankingaccount.creationViewController">
   <children>
     <HBox alignment="CENTER">
       <children>
@@ -23,18 +26,22 @@
     <Label fx:id="type" alignment="CENTER" text="Select Account Type:" />
     <HBox alignment="CENTER" prefHeight="22.0" prefWidth="350.0" spacing="100.0">
       <children>
-        <RadioButton fx:id="radioChequeing" mnemonicParsing="false" text="Chequeing">
+        <RadioButton fx:id="radioChequeing" mnemonicParsing="false"
+                     text="Chequeing">
           <toggleGroup>
             <ToggleGroup fx:id="tg" />
           </toggleGroup>
         </RadioButton>
-        <RadioButton fx:id="radioSavings" mnemonicParsing="false" text="Savings" toggleGroup="$tg" />
+        <RadioButton fx:id="radioSavings" mnemonicParsing="false" text="Savings"
+                     toggleGroup="$tg" />
       </children>
     </HBox>
     <HBox alignment="CENTER" prefHeight="42.0" prefWidth="350.0" spacing="100.0">
       <children>
-        <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
-        <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#handleReturn" text="Return" />
+        <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#handleSubmit"
+                text="Submit" />
+        <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#handleReturn" 
+                text="Return" />
       </children>
     </HBox>
   </children>

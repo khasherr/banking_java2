@@ -1,4 +1,13 @@
+/*
+    Group: Group 2
+    Name: Heon Lee, Sher Khan
+    Assignment:  Final Project
+    Program: Software Development and Network Engineering(Heon Lee)
+    Date: 
 
+    Description: This program is a simple banking program.
+
+ */
 package bankingaccount;
 
 /**

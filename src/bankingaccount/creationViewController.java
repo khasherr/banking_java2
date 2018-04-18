@@ -1,4 +1,3 @@
-
 package bankingaccount;
 
 import java.io.IOException;
@@ -20,6 +19,7 @@ import javafx.scene.layout.Pane;
 
 /**
  * Controller for accountCreationView.fxml
+ *
  * @author Heon Lee
  */
 public class creationViewController extends Controller implements Initializable {
@@ -40,7 +40,7 @@ public class creationViewController extends Controller implements Initializable 
     /**
      * Return the pane object
      *
-     * @return Pane object of accountcreationview.fxml 
+     * @return Pane object of accountcreationview.fxml
      */
     @Override
     public Pane getView() {
@@ -59,6 +59,7 @@ public class creationViewController extends Controller implements Initializable 
 
     /**
      * Event handler for return button
+     *
      * @param event ActionEvent
      * @throws IOException
      */
@@ -70,6 +71,8 @@ public class creationViewController extends Controller implements Initializable 
 
     /**
      * Event handler for submit button
+     * Checks validity
+     *
      * @param event ActionEvent
      * @throws IOException
      */
@@ -91,10 +94,15 @@ public class creationViewController extends Controller implements Initializable 
         Alert alert = new Alert(AlertType.INFORMATION);
         readData();
         BankingAccount a = this.searchAccount(name);
-        if (type != null && name.length() > 0
+        if (type != null && name.length() > 0 && name.matches("[ a-zA-Z]+")
                 && ssn.length() == 9
                 && isNumeric(ssn)
                 && a == null) {
+            //No created account
+            //SSN is length of 9
+            //ssn is numeric
+            //name length is greater than 0
+            //name does not contain any digits
             if (type.equals("Savings")) {
                 Alert fee = new Alert(AlertType.CONFIRMATION);
                 fee.setHeaderText("Saving Account fee is $1 and the interest"
@@ -140,6 +148,11 @@ public class creationViewController extends Controller implements Initializable 
             } else {
                 alert.setHeaderText("Saving account Exists with the following name");
             }
+            alert.showAndWait();
+        } else if (!name.matches("[ a-zA-Z]+")) {
+            //If there is a digit or special characters
+            alert.setHeaderText("Name Error");
+            alert.setContentText("No digit allowed\nNo Special Characters allowed");
             alert.showAndWait();
         }
     }

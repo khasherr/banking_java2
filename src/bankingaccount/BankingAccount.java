@@ -1,9 +1,20 @@
+/*
+    Group: Group 2
+    Name: Heon Lee, Sher Khan
+    Assignment:  Final Project
+    Program: Software Development and Network Engineering(Heon Lee)
+    Date: 
+
+    Description: This program is a simple banking program.
+
+ */
 package bankingaccount;
 
 import java.util.ArrayList;
 
 /**
  * An inheritance class for account classes
+ *
  * @author Sher Khan
  */
 public abstract class BankingAccount {
@@ -13,7 +24,7 @@ public abstract class BankingAccount {
     private String accountHolder;
     private String openDate;
     private String SSN; // social security number 
-    private static int accountHolderID = 100; // intialized it 100\ 
+    private int accountHolderID = 100; // intialized it 100\ 
     private ArrayList<String> history = new ArrayList<>();
     private double bankFees;
     private double balance;
@@ -38,7 +49,7 @@ public abstract class BankingAccount {
         this.accountHolder = accountHolder;
         this.openDate = openDate;
         this.SSN = SSN;
-        this.accountHolderID += this.accountHolderID++;
+        this.accountHolderID = accountHolderID + 9;
         this.bankFees = bankFees;
         this.balance = balance;
     }
@@ -127,27 +138,34 @@ public abstract class BankingAccount {
 
     /**
      * Getter for account holder name
+     *
      * @return name of the owner
      */
     public String getAccountHolder() {
         return this.accountHolder;
     }
+
     /**
      * Getter for date opened
+     *
      * @return Date opened in string
      */
     public String getopenDate() {
         return this.openDate;
     }
+
     /**
      * getter for ssn
+     *
      * @return SSN
      */
     public String getSSN() {
         return this.SSN;
     }
+
     /**
      * getter for account holder ID
+     *
      * @return integer
      */
     public int getaccountHolderID() {
@@ -156,6 +174,7 @@ public abstract class BankingAccount {
 
     /**
      * getter for history
+     *
      * @return String containing all history logs
      */
     public String gethistory() {
@@ -166,29 +185,37 @@ public abstract class BankingAccount {
         }
         return output;
     }
+
     /**
      * Add new history
+     *
      * @param input String
      */
     public void addHistory(String input) {
         history.add(input);
     }
+
     /**
      * Getter for bank fees
+     *
      * @return this.bankFees
      */
     public double getbankFees() {
         return this.bankFees;
     }
+
     /**
      * getter for balance
+     *
      * @return this.balance
      */
     public double getBalance() {
         return this.balance;
     }
+
     /**
      * Acts like a toString()
+     *
      * @return A string containing all the information of this account
      */
     public String appendData() {

@@ -1,4 +1,12 @@
+/*
+    Group: Group 2
+    Name: Heon Lee, Sher Khan
+    Assignment:  Final Project
+    Program: Software Development and Network Engineering(Heon Lee)
 
+    Description: This program is a simple banking program.
+
+ */
 package bankingaccount;
 
 import java.io.IOException;
@@ -61,9 +69,10 @@ public class LoginViewController extends Controller implements Initializable {
 
     /**
      * Event handler for login button
+     * Checks validity
      *
-     * @param event
-     * @throws IOException ActionEvent
+     * @param event ActionEvent
+     * @throws IOException IOException
      */
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {

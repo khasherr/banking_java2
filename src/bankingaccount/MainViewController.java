@@ -15,8 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
 /**
- * FXML Controller class for mainView.fxml.
- * The frame of all the other screens.
+ * FXML Controller class for mainView.fxml. The frame of all the other screens.
  *
  * @author Heon Lee
  */
@@ -49,12 +48,18 @@ public class MainViewController implements Initializable {
         Parent view = loader.load();//Parent class is a base class of all nodes
         //that have children
         Controller newC = loader.getController();
+        //Gets the controller of new fxml file
         if (newC instanceof WelcomeController || newC instanceof DepositController
                 || newC instanceof WithdrawlController) {
             newC.setCurrent(sender.getCurrent());
             newC.setAccountList(sender.getAccountList());
             if (newC instanceof WelcomeController) {
                 ((WelcomeController) newC).message();
+                ((WelcomeController) newC).showBalance();
+            } else if (newC instanceof DepositController) {
+                ((DepositController) newC).showBalance();
+            }else if(newC instanceof WithdrawlController){
+                ((WithdrawlController) newC).showBalance();
             }
         }
         sp.getChildren().add(view);

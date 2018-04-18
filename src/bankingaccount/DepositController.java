@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -18,7 +19,7 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class for Deposit.fxml
  *
- * @author Heon Lee
+ * @author Heon Lee, Sher Khan
  */
 public class DepositController extends Controller implements Initializable {
 
@@ -26,6 +27,8 @@ public class DepositController extends Controller implements Initializable {
     private AnchorPane depositView;
     @FXML
     private TextField amounttf;
+    @FXML
+    private Label balancetf;
 
     /**
      * Initializes the controller class.
@@ -41,6 +44,12 @@ public class DepositController extends Controller implements Initializable {
     @Override
     public Pane getView() {
         return depositView;
+    }
+    /**
+     * Sets a label so that the label shows the balance
+     */
+    public void showBalance(){
+        balancetf.setText(String.valueOf(getCurrent().getBalance()));
     }
     /**
      * event handler for return button
@@ -61,6 +70,7 @@ public class DepositController extends Controller implements Initializable {
     private void handleSubmit(ActionEvent event) throws IOException {
         double amount = 0;
         boolean err = false;
+        //Validity check for not typing any number
         try {
             amount = Double.parseDouble(amounttf.getText());
         } catch (NumberFormatException ex) {
@@ -75,7 +85,8 @@ public class DepositController extends Controller implements Initializable {
             alert.setTitle("DEPOSIT");
             alert.setHeaderText("Deposit: $" + amounttf.getText());
             Optional<ButtonType> a = alert.showAndWait();
-            if (a.get() == ButtonType.OK && amount > 0) {
+            if (!confirmationCatch(a) && a.get() == ButtonType.OK && amount > 0) {
+                //If the user pressed OK and maount is greater than 0
                 getCurrent().deposit(amount);
                 getManagingController().addScreen("WelcomeView.fxml", this);
                 getManagingController().removeScreen(this);

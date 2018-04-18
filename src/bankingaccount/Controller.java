@@ -22,6 +22,8 @@ public abstract class Controller {
     //variables
     private Controller parent;
     private MainViewController manage;
+    //Controllers after login controller will keep track of these two 
+    //variables
     private ArrayList<BankingAccount> accountList = new ArrayList<>();
     private BankingAccount current;
 
@@ -69,13 +71,13 @@ public abstract class Controller {
      */
     public void writeData(ChequeingAccount a) throws IOException {
         File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
-        if (!f.exists()) {
+        if (!f.exists()) { //if file exists
             f.createNewFile();
         }
 
         FileWriter fw = new FileWriter(f, true);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.append(a.appendCAData());
+        bw.append(a.appendCAData());//Append data
         bw.newLine();
         bw.flush();
         bw.close();
@@ -109,13 +111,15 @@ public abstract class Controller {
      */
     public void readData() throws FileNotFoundException, IOException {
         File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
-        if (!f.exists()) {
+        if (!f.exists()) {//If file does not exist
+            //do nothing
         } else {
             FileReader fr = new FileReader(f);
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
-            while (line != null) {
-                makeAccount(line.split(","));
+            while (line != null) {//Keep reading line by line
+                makeAccount(line.split(","));//Create account according to the
+                //information
                 line = br.readLine();
             }
 
@@ -130,17 +134,17 @@ public abstract class Controller {
      */
     private void makeAccount(String[] str) {
         BankingAccount a;
-        if (str.length == 7) {
+        if (str.length == 7) {//If the account is chequeing account
             a = new ChequeingAccount(str[0], str[1], str[2], str[3],
                     Integer.parseInt(str[4]), Double.parseDouble(str[5]),
                     Double.parseDouble(str[6]));
-        } else {
+        } else {//If account is saving account
             a = new SavingAccount(str[0], str[1], str[2], str[3],
                     Integer.parseInt(str[4]), Double.parseDouble(str[5]),
                     Double.parseDouble(str[6]), Double.parseDouble(str[7]));
         }
 
-        accountList.add(a);
+        accountList.add(a);//Add to the list
 
     }
 
@@ -153,7 +157,8 @@ public abstract class Controller {
     public BankingAccount searchAccount(String name) {
         BankingAccount a = null;
         for (int i = 0; i < accountList.size(); i++) {
-            if (accountList.get(i).getAccountHolder().equals(name)) {
+            if (accountList.get(i).getAccountHolder().equals(name)) {//If name equals
+                //the account holder's name
                 a = accountList.get(i);
             }
         }
@@ -182,7 +187,8 @@ public abstract class Controller {
      */
     public boolean isNumeric(String s) {
         try {
-            int i = Integer.parseInt(s);
+            int i = Integer.parseInt(s);//This will throw exception if there
+            //is a character
         } catch (NumberFormatException ex) {
             return false;
         }
@@ -224,7 +230,7 @@ public abstract class Controller {
      */
     public boolean confirmationCatch(Optional<ButtonType> c) {
         try {
-            c.get();
+            c.get();//This will throw exception if c is empty
         } catch (NoSuchElementException e) {
             return true;
         }

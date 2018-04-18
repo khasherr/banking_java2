@@ -3,7 +3,7 @@ package bankingaccount;
 
 /**
  * 
- * @author Sher Khan
+ * @author Sher Khan, Heon Lee
  */
 public class SavingAccount extends BankingAccount implements IInterest {
 

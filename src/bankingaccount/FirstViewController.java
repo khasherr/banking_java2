@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class for firstView.fxml
  *
- * @author Heon Lee
+ * @author Heon Lee, Sher Khan
  */
 public class FirstViewController extends Controller implements Initializable {
 

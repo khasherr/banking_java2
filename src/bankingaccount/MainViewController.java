@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
 /**
  * FXML Controller class for mainView.fxml. The frame of all the other screens.
  *
- * @author Heon Lee
+ * @author Heon Lee, Sher Khan
  */
 public class MainViewController implements Initializable {
 

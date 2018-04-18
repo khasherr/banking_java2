@@ -12,7 +12,7 @@ package bankingaccount;
 
 /**
  *
- * @author Sher Khan
+ * @author Sher Khan, Heon Lee
  */
 public class ChequeingAccount extends BankingAccount{
     

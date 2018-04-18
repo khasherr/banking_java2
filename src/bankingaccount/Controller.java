@@ -16,7 +16,7 @@ import javafx.scene.layout.Pane;
 
 /**
  * An inheritance class for all controllers
- * @author Heon Lee
+ * @author Heon Lee, Sher Khan
  */
 public abstract class Controller {
     //variables

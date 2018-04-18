@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 /**
  * Controller for accountCreationView.fxml
  *
- * @author Heon Lee
+ * @author Heon Lee, Sher Khan
  */
 public class creationViewController extends Controller implements Initializable {
 

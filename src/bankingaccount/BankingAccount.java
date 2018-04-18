@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * An inheritance class for account classes
  *
- * @author Sher Khan
+ * @author Sher Khan, Heon Lee
  */
 public abstract class BankingAccount {
 
@@ -86,12 +86,11 @@ public abstract class BankingAccount {
     /**
      * Transfer
      *
-     * @param sender BankingAccount
      * @param reciever BankingAccount
      * @param amount double
      */
-    public void transfer(BankingAccount sender, BankingAccount reciever, double amount) {
-        sender.withdrawl(amount);
+    public void transfer(BankingAccount reciever, double amount) {
+        this.withdrawl(amount);
         reciever.deposit(amount);
 
         addHistory("You transfered " + amount + " and your balance is " + balance);

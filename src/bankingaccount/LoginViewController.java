@@ -24,7 +24,7 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class for LoginView.fxml
  *
- * @author Heon Lee
+ * @author Heon Lee, Sher Khan
  */
 public class LoginViewController extends Controller implements Initializable {
 

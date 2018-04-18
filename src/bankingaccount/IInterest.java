@@ -3,7 +3,7 @@ package bankingaccount;
 
 /**
  * Interface for Saving Account
- * @author Sher Khan
+ * @author Heon Lee, Sher Khan
  */
 public interface IInterest {
   

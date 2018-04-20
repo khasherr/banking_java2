@@ -50,7 +50,9 @@ public class MainViewController implements Initializable {
         Controller newC = loader.getController();
         //Gets the controller of new fxml file
         if (newC instanceof WelcomeController || newC instanceof DepositController
-                || newC instanceof WithdrawlController) {
+                || newC instanceof WithdrawlController || 
+                newC instanceof TransferViewController || 
+                newC instanceof InformationViewController) {
             newC.setCurrent(sender.getCurrent());
             newC.setAccountList(sender.getAccountList());
             if (newC instanceof WelcomeController) {
@@ -60,6 +62,10 @@ public class MainViewController implements Initializable {
                 ((DepositController) newC).showBalance();
             }else if(newC instanceof WithdrawlController){
                 ((WithdrawlController) newC).showBalance();
+            }else if (newC instanceof TransferViewController){
+                ((TransferViewController) newC).showBalance();
+            } else if (newC instanceof InformationViewController) {
+                ((InformationViewController) newC).message();
             }
         }
         sp.getChildren().add(view);

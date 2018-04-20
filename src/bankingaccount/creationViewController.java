@@ -70,8 +70,7 @@ public class creationViewController extends Controller implements Initializable 
     }
 
     /**
-     * Event handler for submit button
-     * Checks validity
+     * Event handler for submit button Checks validity
      *
      * @param event ActionEvent
      * @throws IOException

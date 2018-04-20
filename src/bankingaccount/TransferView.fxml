@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="transferView" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bankingaccount.TransferViewController">
+  <children>
+    <Label alignment="CENTER" layoutX="206.0" layoutY="14.0" prefHeight="37.0" prefWidth="167.0" text="Transfer ">
+      <font>
+        <Font name="System Bold" size="18.0" />
+      </font>
+    </Label>
+    <Label fx:id="accountLabel" alignment="CENTER" layoutX="127.0" layoutY="109.0" prefHeight="37.0" prefWidth="79.0" text="Amount" />
+    <Label fx:id="accountNumberLabel" layoutX="41.0" layoutY="153.0" prefHeight="30.0" prefWidth="149.0" text="Receiver's Account Number" />
+    <Label fx:id="accountNameLabel" layoutX="91.0" layoutY="192.0" prefHeight="30.0" prefWidth="92.0" text="Receiver Name" />
+    <Button fx:id="returnButton" layoutX="376.0" layoutY="303.0" 
+            mnemonicParsing="false" prefHeight="47.0" prefWidth="79.0" 
+            text="Return" onAction="#handleReturn"/>
+    <TextField fx:id="amounttf" layoutX="239.0" layoutY="117.0" prefWidth="200.0" />
+    <TextField id="Raccount" fx:id="Reaccount" layoutX="239.0" layoutY="157.0" prefWidth="200.0" />
+    <TextField fx:id="name" layoutX="239.0" layoutY="196.0" prefWidth="200.0" />
+    <Button layoutX="104.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleTransfer" prefHeight="49.0" prefWidth="79.0" text="Submit" />
+    <Label fx:id="balancetf" layoutX="149.0" layoutY="51.0" prefHeight="37.0" prefWidth="276.0" text="Your Balance:">
+      <font>
+        <Font size="18.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

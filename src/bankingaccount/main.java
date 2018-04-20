@@ -1,4 +1,13 @@
+/*
+    Group: Group 2
+    Name: Heon Lee, Sher Khan
+    Assignment:  Final Project
+    Program: Software Development and Network Engineering(Heon Lee)
+    Date: April 20th, 2018
 
+    Description: This program is a simple banking program.
+
+ */
 package bankingaccount;
 
 import java.io.IOException;

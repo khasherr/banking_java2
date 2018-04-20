@@ -1,4 +1,3 @@
-
 package bankingaccount;
 
 import java.io.BufferedWriter;
@@ -38,37 +37,43 @@ public class WelcomeController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     /**
      * Getter for view
-     * @return Pane object of welcomeview.fxml 
+     *
+     * @return Pane object of welcomeview.fxml
      */
     @Override
     public Pane getView() {
         return welcomeView;
     }
+
     /**
      * Sets message so that the message include account holder name
      */
     public void message() {
         welcome.setText("Welcome, " + this.getCurrent().getAccountHolder());
     }
+
     /**
      * Sets a label so that the label shows the balance
      */
-    public void showBalance(){
+    public void showBalance() {
         balancetf.setText(String.valueOf(getCurrent().getBalance()));
     }
+
     /**
      * Event handler for exit button and checks validity. Also, it rewrites
-     * updates account information to a file. If a user wants, it also 
-     * writes the user's history to a new file. 
-     * @throws IOException IOException 
+     * updates account information to a file. If a user wants, it also writes
+     * the user's history to a new file.
+     *
+     * @throws IOException IOException
      */
     public void handleExit() throws IOException {
         Alert exit = new Alert(AlertType.CONFIRMATION);
         exit.setContentText("Exit?");
         Optional<ButtonType> ex = exit.showAndWait();
-        if (confirmationCatch(ex)== false && ex.get() == ButtonType.OK) {
+        if (confirmationCatch(ex) == false && ex.get() == ButtonType.OK) {
             //If the user pressed OK
             File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
             if (f.exists()) {//If the file already exists
@@ -82,12 +87,14 @@ public class WelcomeController extends Controller implements Initializable {
                     writeData((SavingAccount) getAccountList().get(i));
                 }
             }
+            
+            //Save history
             Alert history = new Alert(AlertType.CONFIRMATION);
             history.setContentText("Save History?");
             Optional<ButtonType> c = history.showAndWait();
             if (confirmationCatch(c) == false && c.get() == ButtonType.OK) {
-                File hist = new File(".\\src\\bankingaccount\\history\\" + 
-                        getCurrent().getaccountHolderID()
+                File hist = new File(".\\src\\bankingaccount\\history\\"
+                        + getCurrent().getaccountHolderID()
                         + ".txt");
                 while (hist.exists()) {
                     hist = new File(".\\src\\bankingaccount\\history\\"
@@ -105,23 +112,40 @@ public class WelcomeController extends Controller implements Initializable {
 
         }
     }
+
     /**
      * Event handler for transfer button
+     *
      * @param event ActionEvent
      * @throws IOException IOException
      */
     public void handleTransfer(ActionEvent event) throws IOException {
+        getManagingController().addScreen("TransferView.fxml", this);
+        getManagingController().removeScreen(this);
     }
     /**
+     * Event handler for information button
+     * @param event ActionEvent
+     * @throws IOException IOException
+     */
+    public void handleInformation(ActionEvent event) throws IOException {
+        getManagingController().addScreen("informationView.fxml", this);
+        getManagingController().removeScreen(this);
+    }
+
+    /**
      * Event handler for deposit button
-     * @throws IOException IOException 
+     *
+     * @throws IOException IOException
      */
     public void handleDeposit() throws IOException {
         getManagingController().addScreen("Deposit.fxml", this);
         getManagingController().removeScreen(this);
     }
+
     /**
      * Event handler for withdraw button
+     *
      * @throws IOException IOException
      */
     public void handleWithdraw() throws IOException {

@@ -84,7 +84,7 @@ public class WithdrawlController extends Controller implements Initializable {
             Optional<ButtonType> a = alert.showAndWait();
             if (!confirmationCatch(a) && a.get() == ButtonType.OK && amount > 0) {
                 //If user pressed OK and the entered anmount is greater than 0
-                if (getCurrent().withdrawl(amount) == false) {
+                if (getCurrent().withdrawl(amount, true) == false) {
                     //If balance is insufficient
                     Alert balance = new Alert(AlertType.INFORMATION);
                     balance.setTitle("Insufficent");
@@ -98,6 +98,8 @@ public class WithdrawlController extends Controller implements Initializable {
                     alertX.setContentText("Your Balance: " + getCurrent()
                             .getBalance());
                     alertX.showAndWait();
+                    save();
+                    readData();
                     getManagingController().addScreen("WelcomeView.fxml", this);
                     getManagingController().removeScreen(this);
                 }

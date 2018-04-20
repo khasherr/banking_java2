@@ -3,7 +3,6 @@
     Name: Heon Lee, Sher Khan
     Assignment:  Final Project
     Program: Software Development and Network Engineering(Heon Lee)
-    Date: 
 
     Description: This program is a simple banking program.
 
@@ -61,10 +60,12 @@ public abstract class BankingAccount {
      * @param amount double
      * @return boolean. Indicates if withdrawl was successful or not.
      */
-    public boolean withdrawl(double amount) {
+    public boolean withdrawl(double amount, boolean msg) {
         if (amount > 0 && balance - amount >= 0) {
             balance = balance - amount;
-            addHistory("You withdrew" + amount + " and your balance is " + balance);
+            if (msg) {
+                addHistory("You withdrew" + amount + " and your balance is " + balance);
+            }
             return true;
         } else {
             return false;
@@ -89,11 +90,15 @@ public abstract class BankingAccount {
      * @param reciever BankingAccount
      * @param amount double
      */
-    public void transfer(BankingAccount reciever, double amount) {
-        this.withdrawl(amount);
-        reciever.deposit(amount);
-
-        addHistory("You transfered " + amount + " and your balance is " + balance);
+    public boolean transfer(BankingAccount reciever, double amount) {
+        if (this.withdrawl(amount, false)) {
+            reciever.deposit(amount);
+            addHistory("You transfered " + amount + " and your balance is "
+                    + balance);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //calculates fees with balance

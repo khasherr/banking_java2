@@ -35,7 +35,6 @@ public class DepositController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
     /**
      * Getter for view
@@ -88,6 +87,8 @@ public class DepositController extends Controller implements Initializable {
             if (!confirmationCatch(a) && a.get() == ButtonType.OK && amount > 0) {
                 //If the user pressed OK and maount is greater than 0
                 getCurrent().deposit(amount);
+                save();
+                readData();
                 getManagingController().addScreen("WelcomeView.fxml", this);
                 getManagingController().removeScreen(this);
             } else if (amount <= 0) {

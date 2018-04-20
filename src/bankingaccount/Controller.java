@@ -1,4 +1,3 @@
-
 package bankingaccount;
 
 import java.io.BufferedReader;
@@ -11,21 +10,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 
 /**
  * An inheritance class for all controllers
+ *
  * @author Heon Lee, Sher Khan
  */
 public abstract class Controller {
+
     //variables
     private Controller parent;
     private MainViewController manage;
     //Controllers after login controller will keep track of these two 
     //variables
     private ArrayList<BankingAccount> accountList = new ArrayList<>();
-    private BankingAccount current;
+    private BankingAccount current = null;
 
     /**
      * Get managing Controller
@@ -110,6 +112,7 @@ public abstract class Controller {
      * @throws IOException IOException IOException
      */
     public void readData() throws FileNotFoundException, IOException {
+        accountList.clear();
         File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
         if (!f.exists()) {//If file does not exist
             //do nothing
@@ -124,6 +127,15 @@ public abstract class Controller {
             }
 
             br.close();
+        }
+
+        if (current != null) {
+            for (int i = 0; i < accountList.size(); i++) {
+                if (current.getAccountNumber().equals(accountList.get(i)
+                        .getAccountNumber())) {
+                    accountList.set(i, current);
+                }
+            }
         }
     }
 
@@ -143,7 +155,6 @@ public abstract class Controller {
                     Integer.parseInt(str[4]), Double.parseDouble(str[5]),
                     Double.parseDouble(str[6]), Double.parseDouble(str[7]));
         }
-
         accountList.add(a);//Add to the list
 
     }
@@ -164,14 +175,16 @@ public abstract class Controller {
         }
         return a;
     }
+
     /**
      * Search account by account number
+     *
      * @param num account number
      * @return searched account or null
      */
-    public BankingAccount searchNumber(String num){
+    public BankingAccount searchNumber(String num) {
         BankingAccount a = null;
-         for (int i = 0; i < accountList.size(); i++) {
+        for (int i = 0; i < accountList.size(); i++) {
             if (accountList.get(i).getAccountNumber().equals(num)) {
                 a = accountList.get(i);
             }
@@ -194,37 +207,46 @@ public abstract class Controller {
         }
         return true;
     }
-    
+
     /**
      * Getter for account list
+     *
      * @return an array list of all accounts in DB
      */
     public ArrayList<BankingAccount> getAccountList() {
         return accountList;
     }
+
     /**
      * Setter for account list
+     *
      * @param arr an array list of accounts
      */
     public void setAccountList(ArrayList<BankingAccount> arr) {
         this.accountList = arr;
     }
+
     /**
      * Getter for the account logged in currently
+     *
      * @return BankingAccount
      */
     public BankingAccount getCurrent() {
         return current;
     }
+
     /**
      * Setter for the account logged in currently
-     * @param current BankingAccount 
+     *
+     * @param current BankingAccount
      */
     public void setCurrent(BankingAccount current) {
         this.current = current;
     }
+
     /**
      * Checks if the given parameter is empty or not
+     *
      * @param c Optional&lt;ButtonType&gt;
      * @return boolean
      */
@@ -235,6 +257,30 @@ public abstract class Controller {
             return true;
         }
         return false;
+    }
+
+    public void save() throws IOException {
+        //If the user pressed OK
+        File f = new File(".\\src\\bankingaccount\\db\\accounts.txt");
+        if (f.exists()) {//If the file already exists
+            f.delete();//delete it
+        }
+        //Writes updated account information to a new file
+        FileWriter fw = new FileWriter(f, false);
+        for (int i = 0; i < getAccountList().size(); i++) {
+            if (getAccountList().get(i) instanceof ChequeingAccount) {
+                ChequeingAccount ca = (ChequeingAccount)getAccountList().get(i);
+                fw.write(ca.appendCAData());
+                fw.write("\r\n");
+                fw.flush();
+            } else {
+                SavingAccount sa = (SavingAccount)getAccountList().get(i);
+                fw.write(sa.appendSAData());
+                fw.write("\r\n");
+                fw.flush();
+            }
+        }
+        fw.close();
     }
 
     /**

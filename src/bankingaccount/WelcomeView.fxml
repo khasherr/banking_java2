@@ -21,7 +21,7 @@
     <HBox alignment="CENTER" prefHeight="84.0" prefWidth="600.0" spacing="100.0">
       <children>
         <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="141.0" 
-                text="Account Information" />
+                text="Account Information" onAction="#handleInformation"/>
         <HBox alignment="CENTER" prefHeight="73.0" prefWidth="271.0">
           <children>
             <Label font="$x1" prefHeight="34.0" prefWidth="121.0" 
